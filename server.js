@@ -19,10 +19,10 @@ app.use(express.json());
 // });
 
 const authRouts = require("./routes/auth.js");
-const privateRouts = require("./routes/private");
+const privateRouts = require("./routes/private.js");
 // Connecting Routes
 app.use("/mpd/api", authRouts);
-app.use("/mpd/api", privateRouts);
+app.use("/mpd/api/private", privateRouts);
 
 //Database blacks
 require("./routes/csvDataBlackup.js");

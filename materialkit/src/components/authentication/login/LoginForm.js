@@ -51,6 +51,7 @@ export default function LoginForm() {
 
     try {
       const { data } = await axiosInstance.post('/login', { email, password }, config);
+      console.log(data);
       localStorage.clear();
       localStorage.setItem('auth', data.token);
 
@@ -60,16 +61,10 @@ export default function LoginForm() {
       const encInfo = CryptoJS.AES.encrypt(string, secret).toString();
       localStorage.setItem('encInf', encInfo);
 
-      navigate(
-        '/dashboard/home'
-        //  { replace: true }
-      );
-      //  window.location.reload();
+      navigate('/dashboard/home', { replace: true });
+      window.location.reload();
     } catch (error) {
       setError(error.response.data.error);
-      setTimeout(() => {
-        setError('');
-      }, 5000);
     }
   };
 

@@ -13,7 +13,12 @@ exports.protect = async (req, res, next) => {
   }
 
   if (!token) {
-    return next(new ErrorResponse("Not authorized to access this route. Please Login.", 401));
+    return next(
+      new ErrorResponse(
+        "Not authorized to access this route. Please Login.",
+        401
+      )
+    );
   }
 
   try {

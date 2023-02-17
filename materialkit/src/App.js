@@ -20,30 +20,31 @@ export default function App() {
   const [error, setError] = useState('');
   const [privateData, setPrivateData] = useState('');
 
-  // useEffect((e) => {
-  //   const fetchPrivateDate = async () => {
-  //     const config = {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${localStorage.getItem('auth')}`
-  //       }
-  //     };
+  useEffect((e) => {
+    const fetchPrivateDate = async () => {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('auth')}`
+        }
+      };
 
-  //     try {
-  //       const { data } = await axiosInstance.get('/private', config);
+      try {
+        const { data } = await axiosInstance.get('/private', config);
+        console.log(data);
 
-  //       setPrivateData(data.data);
-  //     } catch (error) {
-  //       window.stop('/');
-  //       localStorage.removeItem('auth');
-  //       window.stop();
-  //       navigate('/login', { replace: true });
-  //       setError('You are not authorized please login');
-  //     }
-  //   };
+        setPrivateData(data.data);
+      } catch (error) {
+        window.stop('/');
+        localStorage.removeItem('auth');
+        window.stop();
+        navigate('/login', { replace: true });
+        setError('You are not authorized please login');
+      }
+    };
 
-  //   fetchPrivateDate();
-  // }, []);
+    fetchPrivateDate();
+  }, []);
 
   return (
     <ThemeConfig>
